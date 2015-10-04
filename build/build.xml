@@ -3,6 +3,12 @@
 
     <!-- Config -->
     <property file="build.config"/>
+    <property name="flex.sdk" value="/opt/flexsdk/4.6.0_with_18.0"/>
+    <property name="android.sdk" value="/home/sasha/adt-bundle-linux-x86/sdk/platforms/android-22"/>
+    <property name="gplayservices.libs" value="../android/google-play-services_lib"/>
+    <property name="name" value="AirGooglePlayGameServices"/>
+    <property name="copyDir" value="../bin"/>
+    <property name="bin.ext" value=""/>
 
     <!-- All -->
     <target name="all" depends="android,swc,package,copy" description="Full build of extension"/>
@@ -23,18 +29,21 @@
             </classpath>
         </javac>
         
-        <!-- <mkdir dir="../android/temp/zip"/>
+        <!-- ============================================== -->
+
+        <mkdir dir="../android/temp/zip"/>
         <unzip src="../android/google-play-services_lib/libs/google-play-services.jar" dest="../android/temp/zip" />
         <copydir src="../android/temp/zip/com" dest="../android/temp/classes/com"/>
 
         <copy todir="../temp/android/res/">
             <fileset dir="../android/google-play-services_lib/bin/res"/>
-        </copy> -->
+        </copy>
         
-        <!-- <copy todir="../temp/android/res/values/">
+        <copy todir="../temp/android/res/values/">
             <fileset dir="${gplayservices.libs}/res/values"/>
-        </copy> -->
+        </copy>
         
+        <!-- ============================================= -->
         
         <mkdir dir="../temp/android/"/>
         <jar basedir="../android/temp/classes" destfile="../temp/android/lib${name}.jar"/>

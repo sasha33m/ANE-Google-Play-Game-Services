@@ -28,6 +28,7 @@ import com.freshplanet.googleplaygames.functions.AirGooglePlayGamesGetLeaderboar
 import com.freshplanet.googleplaygames.functions.AirGooglePlayGamesReportAchievementFunction;
 import com.freshplanet.googleplaygames.functions.AirGooglePlayGamesReportScoreFunction;
 import com.freshplanet.googleplaygames.functions.AirGooglePlayGamesShowAchievementsFunction;
+import com.freshplanet.googleplaygames.functions.AirGooglePlayGamesShowLeaderboardFunction;
 import com.freshplanet.googleplaygames.functions.AirGooglePlayGamesSignInFunction;
 import com.freshplanet.googleplaygames.functions.AirGooglePlayGamesSignOutFunction;
 import com.freshplanet.googleplaygames.functions.AirGooglePlayStartAtLaunch;
@@ -69,7 +70,8 @@ public class ExtensionContext extends FREContext implements GameHelper.GameHelpe
 		functionMap.put("reportScore", new AirGooglePlayGamesReportScoreFunction());
 		functionMap.put("showStandardAchievements", new AirGooglePlayGamesShowAchievementsFunction());
 		functionMap.put("getActivePlayerName", new AirGooglePlayGamesGetActivePlayerName());
-        functionMap.put("getLeaderboard", new AirGooglePlayGamesGetLeaderboardFunction());
+    functionMap.put("getLeaderboard", new AirGooglePlayGamesGetLeaderboardFunction());
+    functionMap.put("showLeaderboard", new AirGooglePlayGamesShowLeaderboardFunction());
 		return functionMap;
 	}
 	
@@ -157,6 +159,11 @@ public class ExtensionContext extends FREContext implements GameHelper.GameHelpe
 	{
 		Games.Leaderboards.submitScore(getApiClient(), leaderboardId, highScore);
 	}
+
+  public void showLeaderboard(String leaderboardId)
+  {
+    Games.Leaderboards.getLeaderboardIntent(getApiClient(), leaderboardId);
+  }
 
     public void getLeaderboard( String leaderboardId ) {
 
